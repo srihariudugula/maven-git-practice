@@ -8,41 +8,46 @@
     <groupId>com.hari</groupId>
     <artifactId>just-practice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>JustPractice</name>
-    <description>Spring Boot App (Java 8)</description>
+    <packaging>war</packaging>
 
-    <!-- 🔥 IMPORTANT: Use Spring Boot 2.x -->
+    <name>JustPractice WAR</name>
+
+    <!-- Java 8 compatible Spring Boot -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.18</version>
-        <relativePath/>
     </parent>
 
-    <!-- Java 1.8 -->
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
 
-        <!-- Web (REST + MVC) -->
+        <!-- Web starter WITHOUT embedded Tomcat -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
-        <!-- Thymeleaf (if you use HTML templates) -->
+        <!-- External Tomcat will provide this -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Optional: Thymeleaf -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        </dependency>
-
-        <!-- Lombok (optional) -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
 
         <!-- Testing -->
@@ -55,9 +60,11 @@
     </dependencies>
 
     <build>
+        <finalName>just-practice</finalName>
+
         <plugins>
 
-            <!-- Compile with Java 8 -->
+            <!-- Java 8 compile -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -67,7 +74,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Create executable JAR -->
+            <!-- Spring Boot WAR packaging -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
