@@ -12,7 +12,7 @@ public class HomeController {
 	@GetMapping("/")
 	@ResponseBody
 	public String practice() {
-		return "welcome to home page.., go head: Executing from DEV branch: configuring pipeLine";
+		return "welcome to home page.., go head: Executing from DEV branch: configuring pipeLine TEST 2";
 	}
 	@GetMapping("/home")
 	public String home() {
