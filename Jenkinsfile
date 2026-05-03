@@ -22,5 +22,12 @@ pipeline {
                 }  
             }
         }
+        stage('deploy'){
+            steps{
+                sshagent(['ssh-key-dev']){
+                    sh 'scp -o StrictHostKeyChecking=no target/just-practice.war ec2-user@54.196.81.115:/home/ec2-user/apache-tomcat-9.0.117/webapps'
+                }
+            }
+        }
     }
 }
