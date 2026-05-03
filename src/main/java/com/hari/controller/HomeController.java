@@ -14,6 +14,12 @@ public class HomeController {
 	public String practice() {
 		return "welcome to home page.., go head: executing from the SIT branch: checking choice parameterized feature";
 	}
+
+	@GetMapping("/pipeline")
+	@ResponseBody
+	public String sonar() {
+		return "pipeline deployment success";
+	}
 	@GetMapping("/home")
 	public String home() {
 		return "home";
